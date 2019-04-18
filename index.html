@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	    <link rel="stylesheet" href="css/index.css" />
+	</head>
+	
+	
+	<body>
+		<div id="box">
+			<ul>
+				<li><a href="javascript:alert(0);"><img src="img/1.jpg"/></a></li>
+				<li><a href="javascript:alert(1);"><img src="img/2.jpg"/></a></li>
+				<li><a href="javascript:alert(2);"><img src="img/3.jpg"/></a></li>
+				<li><a href="javascript:alert(3);"><img src="img/4.jpg"/></a></li>
+				<li><a href="javascript:alert(4);"><img src="img/5.jpg"/></a></li>
+			</ul>
+			<ol>
+				<li class="ac">1</li>
+    	        <li>2</li>
+    	        <li>3</li>
+    	        <li>4</li>
+    	        <li>5</li>
+			</ol>
+			<a href="javascript:;" id="qian">&laquo;</a>
+            <a href="javascript:;" id="hou">&raquo;</a>
+		</div>
+		
+		
+		<script>
+			var box=document.querySelector("#box");
+			var ul=document.querySelector("ul");
+			var imgs=document.querySelector("ul").querySelectorAll("li");
+			var btns=document.querySelector("ol").querySelectorAll("li");
+			var index=0;//记录当前下标	
+			var lastindex=0;//记录前一个下标
+			
+			Array.from(btns).forEach(function(btn,i){//先把btns转为数组，遍历btns，btn为btns中的其中一个，i为下标
+				btn.onclick=function(){//btn为点击到其中的一个时
+					index=i;//下标数赋值给index
+					btns[lastindex].classList.remove("ac");//前一个消除ac
+					btns[index].classList.add("ac");//当前加上ac
+					ul.style.left=-800*index+"px";//下标为index这张移动的距离
+					lastindex=index;//现任变前任
+				}
+			})
+			
+			var qian=document.querySelector("#qian");
+			var hou=document.querySelector("#hou");
+			
+			//给hou绑定点击事件
+			hou.onclick=function(){
+				index++;//下标自加，向后移动
+				if(index===btns.length){
+					index=0;//当移动到最后一张时回到第一张
+				}
+				btns[lastindex].classList.remove("ac");//前一个消除ac
+				btns[index].classList.add("ac");//当前加上ac
+				ul.style.left=-800*index+"px";//下标为index这张移动的距离
+				lastindex=index;//现任变前任					
+			}
+			//给qian绑定点击事件
+			qian.onclick=function(){
+				index--;//下标自减，向前移动
+				if(index<0){
+					index=btns.length-1;//当移动到第一张时回到最后一张
+				}
+				btns[lastindex].classList.remove("ac");//前一个消除ac
+				btns[index].classList.add("ac");//当前加上ac
+				ul.style.left=-800*index+"px";//下标为index这张移动的距离
+				lastindex=index;//现任变前任
+			}
+			
+			var time=0;//设置一个定时器变量
+			function auto(){
+				time=setInterval(function(){
+					hou.onclick();
+				},2000);
+			}
+			auto();//定时器，每2秒图片自动往后
+			box.onmouseenter=function(){
+				clearInterval(time);
+			}//鼠标移入时停止自动播放
+			box.onmouseleave=auto;//鼠标移开后自动播放
+		</script>
+		
+	</body>
+</html>

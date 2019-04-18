@@ -1,0 +1,80 @@
+*{margin: 0;padding: 0;}
+li{list-style: none;}
+#box{
+	width: 800px;
+	height: 500px;
+	margin: 100px auto;
+	position: relative;
+	overflow: hidden;
+	
+}
+#box ul{
+	cursor: pointer;
+	width: 4000px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	transition: .5s;
+}
+#box ul li{
+	float: left;
+	white-space: nowrap;
+	
+	
+}
+
+#box ul li img{
+	float: left;
+	width: 800px;
+	height: 500px;
+	
+}
+#box ol{
+	position: absolute;
+	right: 20px;
+	bottom: 10px;
+	z-index: 5;
+}
+#box ol li{
+	float: left;
+	width: 20px;
+	height: 20px;
+	background: #FFFFFF;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 20px;
+	margin: 0 5px;
+	cursor: pointer;
+	text-decoration: none;
+}
+#box ol li.ac{
+	background: red;
+	color: #FFFFFF;
+}
+
+#box #qian{
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	background: rgba(0,0,0,.3);
+	line-height: 50px;
+	text-align: center;
+	cursor: pointer;
+	z-index: 5;
+	color: #FFFFFF;
+	left: 0;
+	top: 240px;
+}
+#box #hou{
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	background: rgba(0,0,0,.3);
+	line-height: 40px;
+	text-align: center;
+	cursor: pointer;
+	z-index: 5;
+	color: #FFFFFF;
+	right: 0;
+	top: 240px;
+}
